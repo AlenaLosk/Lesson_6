@@ -95,9 +95,9 @@ public class RegistrationFormPage {
     }
 
     //@Step("Выбор хобби")
-    public RegistrationFormPage setHobbies(String ... hobbies) {
+    public RegistrationFormPage setHobbies(String... hobbies) {
         ElementsCollection temp = $$("#hobbiesWrapper .custom-checkbox");
-        for (String hobby: hobbies) {
+        for (String hobby : hobbies) {
             temp.findBy(Condition.text(hobby)).click();
         }
         return this;
