@@ -1,17 +1,11 @@
-import com.codeborne.selenide.*;
-import com.github.javafaker.Faker;
-import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.*;
 import pages.RegistrationFormPage;
 import utils.RandomUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
-import static com.codeborne.selenide.Selenide.*;
 
 public class TestForm extends TestBase {
-    Random random = new Random();
     String firstName, lastName, email, gender, number, subject, address, state, city;
     String[] hobbies;
     Date birthday;
@@ -66,10 +60,9 @@ public class TestForm extends TestBase {
                 .checkResultsTable("Mobile", number)
                 .checkResultsTable("Date of Birth", new SimpleDateFormat("dd MMMM,yyyy", Locale.ENGLISH).format(birthday))
                 .checkResultsTable("Subjects", subject)
-                .checkResultsTable("Hobbies", String.format(Arrays.stream(hobbies).toList().toString().replace("[", "").replace("]", "")))
+                .checkResultsTable("Hobbies", String.join(", ", hobbies))
                 .checkResultsTable("Picture", "stitch.jpg")
                 .checkResultsTable("Address", address)
                 .checkResultsTable("State and City", state + " " + city);
-
     }
 }

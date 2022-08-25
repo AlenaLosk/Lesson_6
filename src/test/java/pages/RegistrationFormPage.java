@@ -1,7 +1,6 @@
 package pages;
 
 import com.codeborne.selenide.*;
-import io.qameta.allure.Step;
 import pages.components.CalendarComponent;
 import pages.components.ResultsModal;
 
