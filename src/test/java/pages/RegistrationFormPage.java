@@ -14,8 +14,8 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class RegistrationFormPage {
-    private final String TITLE_TEXT = "Student Registration Form";
-    private final String PATH = "/automation-practice-form";
+    private final static String TITLE_TEXT = "Student Registration Form";
+    private final static String PATH = "/automation-practice-form";
 
     CalendarComponent calendarComponent = new CalendarComponent();
     ResultsModal resultsModal = new ResultsModal();
@@ -35,7 +35,7 @@ public class RegistrationFormPage {
 
     ElementsCollection hobbiesCheckBoxes = $$("#hobbiesWrapper .custom-checkbox");
 
-    @Step("Открытие страницы")
+    @Step("Открыть страницу формы")
     public RegistrationFormPage openPage() {
         // open page and check header form
         open(PATH);
@@ -46,45 +46,45 @@ public class RegistrationFormPage {
         return this;
     }
 
-    @Step("Ввод имени")
+    @Step("Ввести имя")
     public RegistrationFormPage setFirstName(String firstName) {
         firstNameInput.setValue(firstName);
         return this;
     }
 
-    @Step("Ввод фамилии")
+    @Step("Ввести фамилию")
     public RegistrationFormPage setLastName(String lastName) {
         lastNameInput.setValue(lastName);
         return this;
     }
 
-    @Step("Ввод email")
+    @Step("Ввести email")
     public RegistrationFormPage setUserEmail(String userEmail) {
         userEmailInput.setValue(userEmail);
         return this;
     }
 
-    @Step("Выбор пола")
+    @Step("Выбрать пол")
     public RegistrationFormPage setGender(String gender) {
         genderRadioButton.$(byText(gender)).click();
         return this;
     }
 
-    @Step("Ввод номера телефона")
+    @Step("Ввести номера телефона")
     public RegistrationFormPage setUserNumber(String number) {
         //userNumberInput.setValue(Keys.PAGE_DOWN);
         userNumberInput.setValue(number);
         return this;
     }
 
-    @Step("Выбор дня рождения")
+    @Step("Выбрать день рождения")
     public RegistrationFormPage setBirthday(Date birthday) {
         dateOfBirthInput.click(ClickOptions.usingJavaScript());
         calendarComponent.setDate(birthday);
         return this;
     }
 
-    @Step("Выбор предмета")
+    @Step("Выбрать предмет")
     public String setSubject() {
         subjectsInput.click(ClickOptions.usingJavaScript());
         subjectsInput.setValue("a");
@@ -94,55 +94,54 @@ public class RegistrationFormPage {
         return subject;
     }
 
-    @Step("Выбор хобби")
+    @Step("Выбрать хобби")
     public RegistrationFormPage setHobbies(String... hobbies) {
-        ElementsCollection temp = $$("#hobbiesWrapper .custom-checkbox");
         for (String hobby : hobbies) {
-            temp.findBy(Condition.text(hobby)).click();
+            hobbiesCheckBoxes.findBy(Condition.text(hobby)).click();
         }
         return this;
     }
 
-    @Step("Ввод адреса")
+    @Step("Ввести адрес")
     public RegistrationFormPage setAddress(String address) {
         currentAddressInput.setValue(address);
         return this;
     }
 
-    @Step("Выбор иконки")
+    @Step("Загрузить иконку")
     public RegistrationFormPage uploadFile(String filePath) {
         //pictureChooseWindow.uploadFromClasspath("stitch.jpg"); - доп. вариант загрузки из папки resources
         pictureChooseWindow.uploadFile(new File(filePath));
         return this;
     }
 
-    @Step("Выбор штата")
+    @Step("Выбрать штат")
     public RegistrationFormPage setState(String state) {
         stateInput.click();
         $(byText(state)).click();
         return this;
     }
 
-    @Step("Выбор города")
+    @Step("Выбрать город")
     public RegistrationFormPage setCity(String city) {
         cityInput.click();
         $(byText(city)).click();
         return this;
     }
 
-    @Step("Отправка заполненной формы")
+    @Step("Отправить заполненную форму")
     public RegistrationFormPage submit() {
         submitButton.click();
         return this;
     }
 
-    @Step("Проверка отображения таблицы с результатами")
+    @Step("Отображается таблица с результатами")
     public RegistrationFormPage checkResultsTableVisible() {
         resultsModal.checkVisible();
         return this;
     }
 
-    @Step("Проверка полей внутри таблицы с результатами")
+    @Step("Значение в поле таблицы с результатами соответствует ранее введенному")
     public RegistrationFormPage checkResultsTable(String key, String value) {
         resultsModal.checkResult(key, value);
         return this;
