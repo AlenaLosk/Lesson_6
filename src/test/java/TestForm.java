@@ -5,6 +5,7 @@ import utils.RandomUtils;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+@DisplayName("Check input forms")
 public class TestForm extends TestBase {
     String firstName, lastName, email, gender, number, subject, address, state, city;
     String[] hobbies;
@@ -12,7 +13,7 @@ public class TestForm extends TestBase {
     RegistrationFormPage formPage = new RegistrationFormPage();
 
     @BeforeEach
-    public void prepareTestData() {
+    public void setUp() {
         // generate data for inputs
         RandomUtils randomUtils = new RandomUtils();
         firstName = randomUtils.getRandomFirstName();
@@ -30,6 +31,7 @@ public class TestForm extends TestBase {
                 "Rajasthan", List.of("Jaipur", "Jaiselmer")), state);
     }
 
+    @DisplayName("Check input form")
     @Test
     public void fillFormTest() {
         formPage.openPage()

@@ -1,6 +1,6 @@
 plugins {
-    id 'java-library'
-    id 'io.qameta.allure' version '2.9.6'
+    id 'java'
+    id 'io.qameta.allure' version '2.10.0'
     id 'io.freefair.lombok' version '6.0.0-m2'
 }
 
@@ -8,14 +8,15 @@ repositories {
     mavenCentral()
 }
 
-def allureVersion = "2.18.1",
-    selenideVersion = "6.6.6",
-    junitVersion = "5.9.0",
-    slf4jVersion = "1.7.32",
-    restAssuredVersion = "5.1.1",
-    javafakerVersion = "1.0.2",
-    assertjVersion = "3.23.1",
-    aspectjVersion = "1.9.5"
+def allureVersion = '2.19.0',
+    selenideVersion = '6.7.2',
+    junitVersion = '5.9.0',
+    slf4jVersion = '1.7.36',
+    restAssuredVersion = '5.1.1',
+    javafakerVersion = '1.0.2',
+    assertjVersion = '3.23.1',
+    aspectjVersion = '1.9.9.1'
+
 
 allure {
     report {
@@ -31,6 +32,8 @@ allure {
     }
 }
 
+
+
 dependencies {
     testImplementation(
             "com.codeborne:selenide:$selenideVersion",
@@ -45,7 +48,10 @@ dependencies {
             "org.aspectj:aspectjweaver:$aspectjVersion")
 }
 
-tasks.withType(JavaCompile) {
+compileJava {
+    options.encoding = 'UTF-8'
+}
+compileTestJava {
     options.encoding = 'UTF-8'
 }
 
