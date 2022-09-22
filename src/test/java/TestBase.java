@@ -15,9 +15,14 @@ public class TestBase {
 
         Configuration.browserCapabilities = capabilities;
 
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.baseUrl = System.getProperty("base_url", "https://demoqa.com");
+        Configuration.browser = System.getProperty("browser_name", "chrome");
+        Configuration.browserVersion = System.getProperty("browser_version", "101");
+        Configuration.browserSize = System.getProperty("browser_size","1920x1080");
+        // set https://user1:1234@selenoid.autotests.cloud/wd/hub in Jenkins
+        if (System.getProperty("selenoid_remote_url") != null) {
+            Configuration.remote = System.getProperty("selenoid_remote_url");
+        }
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
 

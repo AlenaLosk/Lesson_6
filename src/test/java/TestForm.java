@@ -32,6 +32,7 @@ public class TestForm extends TestBase {
     }
 
     @DisplayName("Check input form")
+    @Tag("Main_test")
     @Test
     public void fillFormTest() {
         formPage.openPage()
