@@ -26,8 +26,8 @@ public class TestBase {
         Configuration.browserVersion = System.getProperty("browser_version", "101");
         Configuration.browserSize = System.getProperty("browser_size", "1920x1080");
         if (selenoidRemote != null) {
-            if (config.loginSelenoid() != null && config.passwordSelenoid() != null) {
-                Configuration.remote = "https://" + config.loginSelenoid() + ":" + config.passwordSelenoid() + "@" + selenoidRemote;
+            if (config.loginForSelenoid() != null && config.passwordForSelenoid() != null) {
+                Configuration.remote = "https://" + config.loginForSelenoid() + ":" + config.passwordForSelenoid() + "@" + selenoidRemote;
             } else {
                 Configuration.remote = "https://" + System.getProperty("selenoid_login", "") + ":" + System.getProperty("selenoid_password", "") + "@" + selenoidRemote;
             }
