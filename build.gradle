@@ -15,7 +15,8 @@ def allureVersion = '2.19.0',
     restAssuredVersion = '5.1.1',
     javafakerVersion = '1.0.2',
     assertjVersion = '3.23.1',
-    aspectjVersion = '1.9.9.1'
+    aspectjVersion = '1.9.9.1',
+    aeonbitsVersion = '1.0.12'
 
 
 allure {
@@ -45,7 +46,8 @@ dependencies {
             "io.qameta.allure:allure-rest-assured:$allureVersion",
             "com.github.javafaker:javafaker:$javafakerVersion",
             "org.assertj:assertj-core:$assertjVersion",
-            "org.aspectj:aspectjweaver:$aspectjVersion")
+            "org.aspectj:aspectjweaver:$aspectjVersion",
+            "org.aeonbits.owner:owner:$aeonbitsVersion")
 }
 
 compileJava {
