@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class TestBase {
+    static String selenideRemote = System.getProperty("selenide.remote");
     @BeforeAll
     public static void config() {
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -20,8 +21,8 @@ public class TestBase {
         Configuration.browserVersion = System.getProperty("browser_version", "101");
         Configuration.browserSize = System.getProperty("browser_size","1920x1080");
         // set https://user1:1234@selenoid.autotests.cloud/wd/hub in Jenkins
-        if (System.getProperty("selenoid_remote_url") != null) {
-            Configuration.remote = System.getProperty("selenoid_remote_url");
+        if (selenideRemote != null) {
+            Configuration.remote = "https://user1:1234@" + selenideRemote;
         }
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
