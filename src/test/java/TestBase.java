@@ -24,9 +24,13 @@ public class TestBase {
         Configuration.baseUrl = System.getProperty("base_url", "https://demoqa.com");
         Configuration.browser = System.getProperty("browser_name", "chrome");
         Configuration.browserVersion = System.getProperty("browser_version", "101");
-        Configuration.browserSize = System.getProperty("browser_size","1920x1080");
+        Configuration.browserSize = System.getProperty("browser_size", "1920x1080");
         if (selenoidRemote != null) {
-            Configuration.remote = "https://" + config.loginSelenoid() + ":" + config.passwordSelenoid() + "@" + selenoidRemote;
+            if (config.loginSelenoid() != null && config.passwordSelenoid() != null) {
+                Configuration.remote = "https://" + config.loginSelenoid() + ":" + config.passwordSelenoid() + "@" + selenoidRemote;
+            } else {
+                Configuration.remote = "https://" + System.getProperty("selenoid_login", "") + ":" + System.getProperty("selenoid_password", "") + "@" + selenoidRemote;
+            }
         }
         SelenideLogger.addListener("allure", new AllureSelenide());
 
